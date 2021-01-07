@@ -43,13 +43,19 @@ const calcularTempoFaltaFechar = (tempoFechar) => {
 };
 
 const isUpToDate = (mapas, timer) => {
-  let result = false;
-
+  let result = true;
+  let undefinedCount = 0;
   mapas.forEach(item => {
-    if (calcularTempoFaltaFechar(item.tempoFechar).includes("Fecha em")) {
-      result = true;
-    }
+    if (calcularTempoFaltaFechar(item.tempoFechar).includes("Fechada")) {
+      result = false;
+    } else if (item.tempoFechar === undefined) {
+      undefinedCount++;
+    } 
   });
+
+  if (undefinedCount === mapas.length) {
+    return false;
+  }
 
   return result;
 }
