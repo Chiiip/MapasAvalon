@@ -36,7 +36,7 @@ const calcularTempoFaltaFechar = (tempoFechar) => {
   const hours = parseInt(duration.asHours());
   const minutes = parseInt(duration.asMinutes()) % 60;
 
-  return hours > 0 && minutes > 0 ? "Fecha em " + hours + "h " + minutes + "m" : "Fechada";
+  return hours > 0 || minutes > 0 ? "Fecha em " + hours + "h " + minutes + "m" : "Fechada";
   } else {
     return "----"
   }
