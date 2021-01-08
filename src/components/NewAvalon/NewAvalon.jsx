@@ -18,6 +18,7 @@ const GREEN_PORTAL = "Portal Verde";
 const YELLOW_PORTAL = "Portal Amarelo";
 const HO = "Rota Hideout";
 const DUNGEON = "Rota DG Avalon";
+const BW = "Rota Arthur - BW";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,6 +124,7 @@ const NewAvalon = (props) => {
               >
                 <MenuItem value={HO}>{HO}</MenuItem>
                 <MenuItem value={DUNGEON}>{DUNGEON}</MenuItem>
+                <MenuItem value={BW}>{BW}</MenuItem>
               </Select>
             </div>
             {inputs.map((item, idx) => {
