@@ -13,6 +13,7 @@ const Main = () => {
 
   const handleTextChange = event => {
     setText(event.target.value);
+    setFilter("");
   }
 
   return (
