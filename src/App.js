@@ -4,7 +4,7 @@ import Main from "./components/Main/Main";
 function App() {
   return (
     <div className="App">
-      <h1>Rotas Avalon</h1>
+      <h1>Mapas Avalon</h1>
       <Main />
     </div>
   );

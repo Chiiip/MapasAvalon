@@ -1,54 +1,26 @@
 import React, { useState, useEffect } from "react";
-import AvalonCard from "../AvalonCard/AvalonCard";
-import NewAvalon from "../NewAvalon/NewAvalon";
-import Button from "@material-ui/core/Button";
-import Fade from "@material-ui/core/Fade";
-import avalonRouteService from "../../services/avalonRouteService";
+import MapsTable from "../MapsTable/MapsTable";
+import avalonMapService from "../../services/avalonMapService";
 
 const Main = () => {
-  const [showNewAvalon, setShowNewAvalon] = useState(false);
+  const [firebaseData, setFirebaseData] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [text, setText] = useState("");
 
   useEffect(() => {
-    avalonRouteService.listAllRoutes().then((data) => {
-      setFirebaseCards(Object.values(data.data).reverse());
-    });
+    avalonMapService.listAllMaps(setFirebaseData);
   }, []);
 
-  const [firebaseCards, setFirebaseCards] = useState([]);
+  const handleTextChange = event => {
+    setText(event.target.value);
+  }
 
   return (
     <div>
-      <div id="cards-container">
-        {firebaseCards.map((item) => {
-          return (
-            <>
-              <AvalonCard {...item} />
-            </>
-          );
-        })}
+      <div><input type="text" value={text} onChange={handleTextChange}></input></div>
+      <div>
+        <MapsTable list={firebaseData} filter={filter} text={text} />
       </div>
-      <Button
-        variant="contained"
-        onClick={() => {
-          setShowNewAvalon(true);
-        }}
-        color="primary"
-        size="large"
-      >
-        Cadastrar Nova Rota
-      </Button>
-      <Fade in={showNewAvalon} unmountOnExit>
-        <div>
-          <NewAvalon
-            closeCallback={() => {
-              setShowNewAvalon(false);
-              avalonRouteService.listAllRoutes().then((data) => {
-                setFirebaseCards(Object.values(data.data).reverse());
-              });
-            }}
-          />
-        </div>
-      </Fade>
     </div>
   );
 };
